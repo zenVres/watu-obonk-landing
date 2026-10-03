@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watu Obonk Coffee & View — Hidden Cafe di Lereng Muria</title>
+  <meta name="description" content="Kedai kopi tersembunyi di lereng Gunung Muria, Kudus. Nikmati sunset, city light 3 kota, dan kopi khas pegunungan Japan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coffee: #3C2415;
+      --cream: #F5E6D3;
+      --gold: #C8A96E;
+      --dark: #1a1108;
+      --warm: #8B6914;
+      --leaf: #4A7C59;
+      --sunset: #E8734A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(26,17,8,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(26,17,8,0.98);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .logo span { color: var(--cream); font-weight: 400; font-size: 0.9rem; display: block; letter-spacing: 4px; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://v3b.fal.media/files/b/0aace591/GuhmZctLxuXMfszC889WH_2EQIcKeo.png') center/cover no-repeat;
+      filter: brightness(0.5);
+      transform: scale(1.05);
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.12); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,17,8,0.3) 0%, rgba(26,17,8,0.1) 40%, rgba(26,17,8,0.7) 80%, rgba(26,17,8,1) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      animation: fadeUp 1s ease-out 0.3s both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease-out 0.5s both;
+    }
+
+    .hero h1 .highlight { color: var(--gold); }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 1s ease-out 0.7s both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      transition: all 0.3s;
+      animation: fadeUp 1s ease-out 0.9s both;
+    }
+
+    .hero-cta:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,169,110,0.3); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 6rem 2rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      opacity: 0.7;
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── TENTANG ─── */
+    .about {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+
+    .about-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .about-visual:hover img { transform: scale(1.05); }
+
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      padding: 1.5rem;
+      background: rgba(200,169,110,0.08);
+      border: 1px solid rgba(200,169,110,0.15);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .info-card .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .info-card h4 { font-size: 0.85rem; color: var(--gold); margin-bottom: 0.25rem; }
+    .info-card p { font-size: 0.8rem; opacity: 0.7; }
+
+    /* ─── MENU ─── */
+    .menu-section { background: linear-gradient(180deg, var(--dark) 0%, #1f150a 50%, var(--dark) 100%); }
+
+    .menu-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .menu-card {
+      background: rgba(60,36,21,0.4);
+      border: 1px solid rgba(200,169,110,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .menu-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+    .menu-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .menu-card-body { padding: 1.5rem; }
+    .menu-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .menu-card-body p { font-size: 0.85rem; opacity: 0.7; line-height: 1.6; margin-bottom: 1rem; }
+
+    .price-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* ─── VIEW / GALLERY ─── */
+    .gallery-section { text-align: center; }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-item.large { grid-row: span 2; }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+
+    /* ─── REVIEWS ─── */
+    .reviews-section {
+      background: linear-gradient(180deg, var(--dark) 0%, #0f0a04 100%);
+      text-align: center;
+    }
+
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      padding: 2rem;
+      background: rgba(60,36,21,0.3);
+      border: 1px solid rgba(200,169,110,0.1);
+      border-radius: 16px;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .review-card:hover { border-color: var(--gold); }
+
+    .stars { color: #FFD700; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 0.85rem;
+    }
+
+    .reviewer-name { font-weight: 600; font-size: 0.85rem; }
+    .reviewer-source { font-size: 0.75rem; opacity: 0.5; }
+
+    /* ─── INFO BAR ─── */
+    .info-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 4rem 2rem;
+    }
+
+    .info-stat { text-align: center; }
+    .info-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .info-stat .label { font-size: 0.8rem; opacity: 0.6; margin-top: 0.25rem; letter-spacing: 1px; }
+
+    /* ─── CTA / FOOTER ─── */
+    .cta-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, transparent, rgba(200,169,110,0.05), transparent);
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p { opacity: 0.7; margin-bottom: 2rem; }
+
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .btn-primary { background: var(--gold); color: var(--dark); }
+    .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+
+    .btn-outline { border: 1px solid var(--gold); color: var(--gold); background: transparent; }
+    .btn-outline:hover { background: var(--gold); color: var(--dark); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(200,169,110,0.1);
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.large { grid-row: auto; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .info-bar { grid-template-columns: 1fr 1fr; }
+      .info-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav id="navbar">
+    <div class="logo">WATU OBONK<span>Coffee & View</span></div>
+    <ul class="nav-links">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#view">View</a></li>
+      <li><a href="#review">Review</a></li>
+      <li><a href="#kontak">Kunjungi</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">☕ Hidden Cafe di Lereng Muria</div>
+      <h1>Ngopi dengan <span class="highlight">View</span> yang Tak Terlupakan</h1>
+      <p>Nikmati sunset, city light 3 kota, dan kopi khas pegunungan Muria — di tempat yang hanya bisa ditemukan oleh mereka yang berani menjelajah.</p>
+      <a href="https://maps.app.goo.gl/xZSpEnz28DCZrfyU6" class="hero-cta" target="_blank">📍 Buka Google Maps</a>
+    </div>
+  </section>
+
+  <!-- ─── TENTANG ─── -->
+  <section id="tentang" style="max-width:1200px; margin:0 auto;">
+    <div class="about">
+      <div class="about-visual">
+        <img src="https://v3b.fal.media/files/b/0aace591/mUO4ScTTfRfjyOklcG9Vi_OrvPveIy.png" alt="City Light View dari Watu Obonk">
+      </div>
+      <div class="about-text">
+        <div class="section-label">Tentang Kami</div>
+        <h2 class="section-title">Tersembunyi di Lereng Gunung Muria</h2>
+        <p class="section-desc">
+          Watu Obonk Coffee & View adalah hidden cafe di Desa Wisata Japan, Kecamatan Dawe, Kabupaten Kudus. Berada di lereng Gunung Muria, kedai ini menyuguhkan panorama sunset yang ciamik dan pemandangan city light dari 3 kota: Kudus, Pati, dan Rembang.
+        </p>
+        <p class="section-desc" style="margin-top:-1.5rem;">
+          Dekat dengan situs bersejarah Makam Mbah Surogonjo dan tak jauh dari Makam Syekh Hasan Sadzali serta Sunan Muria, menghadirkan perpaduan wisata alam dan religi yang unik.
+        </p>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="icon">🕐</div>
+            <h4>Jam Buka</h4>
+            <p>15.00 – 22.00 WIB</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">📍</div>
+            <h4>Lokasi</h4>
+            <p>Desa Japan, Dawe, Kudus</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">🏍️</div>
+            <h4>Akses</h4>
+            <p>Sepeda motor (jalan arah Rejenu)</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">🕌</div>
+            <h4>Fasilitas</h4>
+            <p>Mushola, Parkir, WC Bersih</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <div class="info-bar">
+    <div class="info-stat"><div class="num">5.6K+</div><div class="label">Followers IG</div></div>
+    <div class="info-stat"><div class="num">3</div><div class="label">Kota City Light</div></div>
+    <div class="info-stat"><div class="num">5rb</div><div class="label">Mulai dari Rp</div></div>
+    <div class="info-stat"><div class="num">⭐ 4.7</div><div class="label">Rating Google</div></div>
+  </div>
+
+  <!-- ─── MENU ─── -->
+  <section id="menu" class="menu-section">
+    <div style="max-width:1200px; margin:0 auto; text-align:center; margin-bottom:3rem;">
+      <div class="section-label">Menu Andalan</div>
+      <h2 class="section-title">Rasa Pegunungan dalam Setiap Sajian</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img class="menu-card-img" src="https://v3b.fal.media/files/b/0aace591/v192Fi7j_db2DwFRLcCfK_lH7cykfG.png" alt="Kopi Hitam Khas Japan & Gethuk">
+        <div class="menu-card-body">
+          <h3>Kopi Hitam Khas Japan</h3>
+          <p>Kopi asli petani lereng Muria yang disangrai tradisional. Aroma kuat, rasa earthy yang khas pegunungan. Ditemani Gethuk Watu Obonk, camilan singkong khas Muria.</p>
+          <span class="price-tag">Rp 5.000 – 18.000</span>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img class="menu-card-img" src="https://v3b.fal.media/files/b/0aace591/CiNiCxagbSjiM3eFIMxVA_IBej2num.png" alt="Nasi Telur Sambal Matah">
+        <div class="menu-card-body">
+          <h3>Nasi Telur Sambal Matah</h3>
+          <p>Menu favorit pengunjung! Nasi hangat dengan telur goreng sempurna dan sambal matah segar yang bikin nagih. Pilihan sempurna di udara dingin pegunungan.</p>
+          <span class="price-tag">Rp 10.000</span>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img class="menu-card-img" src="https://v3b.fal.media/files/b/0aace591/v192Fi7j_db2DwFRLcCfK_lH7cykfG.png" alt="Gethuk Watu Obonk">
+        <div class="menu-card-body">
+          <h3>Gethuk Watu Obonk</h3>
+          <p>Cemilan khas Pegunungan Muria terbuat dari singkong pilihan. Tekstur lembut, manis alami — teman sejati ngopi sore di atas awan.</p>
+          <span class="price-tag">Rp 8.000</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VIEW GALLERY ─── -->
+  <section id="view" class="gallery-section">
+    <div class="section-label">Visual Lokasi</div>
+    <h2 class="section-title">Pemandangan yang Membuat Kamu Kembali</h2>
+    <p class="section-desc" style="margin:0 auto 3rem;">Dari golden hour sunset hingga gemerlap city light malam hari — setiap momen di Watu Obonk adalah kenangan.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="https://v3b.fal.media/files/b/0aace591/GuhmZctLxuXMfszC889WH_2EQIcKeo.png" alt="Sunset dari Watu Obonk">
+        <div class="gallery-caption">🌅 Golden Hour — Sunset di Balik Lereng Muria</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://v3b.fal.media/files/b/0aace591/mUO4ScTTfRfjyOklcG9Vi_OrvPveIy.png" alt="City Light View">
+        <div class="gallery-caption">🌃 City Light — Kudus, Pati, Rembang</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://v3b.fal.media/files/b/0aace591/v192Fi7j_db2DwFRLcCfK_lH7cykfG.png" alt="Kopi di Atas Awan">
+        <div class="gallery-caption">☕ Ngopi di Atas Awan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REVIEWS ─── -->
+  <section id="review" class="reviews-section">
+    <div class="section-label">Kata Mereka</div>
+    <h2 class="section-title">Review Pelanggan</h2>
+    <p class="section-desc" style="margin:0 auto 3rem;">Cerita asli dari pengunjung yang sudah merasakan pengalaman ngopi di lereng Muria.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Pemandangan city light dari sini luar biasa! Bisa lihat 3 kota sekaligus. Kopi hitamnya enak banget dan harganya murah, cuma Rp 5.000. Hidden gem banget!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Ahmad R.</div>
+            <div class="reviewer-source">Google Maps Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Tempatnya adem, sejuk, tenang. Cocok banget buat healing dari rutinitas kota. Nasi telur sambal matahnya juara. Worth the ride meskipun jalannya agak menantang!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">D</div>
+          <div>
+            <div class="reviewer-name">Dina S.</div>
+            <div class="reviewer-source">Instagram @watu_obonk1</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Sunset-nya gak kalah sama Bali! Serius. Gethuknya enak, tempatnya bersih, ada mushola juga. Pasti bakal balik lagi. Recommended banget buat anak muda Kudus."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">F</div>
+          <div>
+            <div class="reviewer-name">Fajar M.</div>
+            <div class="reviewer-source">Google Maps Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section id="kontak" class="cta-section">
+    <h2>Siap Ngopi di Atas Awan?</h2>
+    <p>Buka setiap hari, 15.00 – 22.00 WIB. Akses via jalan arah Rejenu, Desa Japan, Dawe, Kudus.</p>
+    <div class="cta-buttons">
+      <a href="https://maps.app.goo.gl/xZSpEnz28DCZrfyU6" class="btn btn-primary" target="_blank">📍 Google Maps</a>
+      <a href="https://www.instagram.com/watu_obonk1" class="btn btn-outline" target="_blank">📸 Instagram</a>
+      <a href="https://s.id/watu_obonk" class="btn btn-outline" target="_blank">🔗 Link Bio</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2026 Watu Obonk Coffee & View — Desa Wisata Japan, Kecamatan Dawe, Kabupaten Kudus, Jawa Tengah</p>
+    <p style="margin-top:0.5rem;">#ngopinyadiwatuobonk #watuobonk</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>
